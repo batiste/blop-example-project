@@ -12,10 +12,11 @@
   "devDependencies": {},
   "dependencies": {
     "blop-language": "^0.9.5",
+    "express": "^4.16.4",
+    "node-fetch": "^2.3.0",
+    "snabbdom-to-html": "^5.1.1",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.0",
-    "express": "^4.16.4",
-    "snabbdom-to-html": "^5.1.1",
     "webpack-dev-middleware": "^3.6.2",
     "webpack-node-externals": "^1.7.2"
   }

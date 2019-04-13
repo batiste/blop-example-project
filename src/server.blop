@@ -18,12 +18,13 @@ instance = middleware(compiler, {
   publicPath: '/bundle'
 })
 
-/* a singleton in memory, should be in a DB
-   and for each user */
+/* If there is any client state that needs
+   to be saved on the server (session data),
+   this should go in there */
 savedState = null
 
 render = async (path: string) => {
-  state = createState(savedState)
+  state = createState(null)
   router = createRouter(state)
   await router.go(path)
   tree = Index(state)
