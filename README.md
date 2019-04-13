@@ -1,6 +1,6 @@
 # Blop example project
 
-Example project for the Blop language with SSR, express and webpack
+This project is an Hello World example made with [the Blop language](https://github.com/batiste/blop-language) using SSR, express and webpack
 
 To run:
 
