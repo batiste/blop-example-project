@@ -1,0 +1,22 @@
+{
+  "name": "blop-example-project",
+  "version": "1.0.0",
+  "description": "Example project for the Blop language with SSR, express and webpack",
+  "main": "src/index.blop",
+  "scripts": {
+    "start": "npm run server",
+    "server": "node_modules/webpack/bin/webpack.js --config webpack.server.js && node dist/server.js"
+  },
+  "author": "Batiste Bieler",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "blop-language": "^0.9.5",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0",
+    "express": "^4.16.4",
+    "snabbdom-to-html": "^5.1.1",
+    "webpack-dev-middleware": "^3.6.2",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
