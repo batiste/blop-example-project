@@ -1,7 +1,23 @@
 import { Router } from './lib/router.blop'
+// this will allow SSR to fetch
+import { default as fetch } from 'node-fetch'
+
+async def getUsers(state) {
+  state.loading = true
+  try {
+    response = await fetch(`https://jsonplaceholder.typicode.com/users`)
+  } catch e {
+    console.error(e)
+    state.loading = false
+    return
+  }
+  state.users = await response.json()
+  state.loading = false
+}
 
 async def indexHandler(params, state) {
   state.page = 'index'
+  await getUsers(state)
   console.log('indexHandler called')
 }
 

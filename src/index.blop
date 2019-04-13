@@ -1,20 +1,4 @@
 
-// this will allow SSR to fetch
-import { default as fetch } from 'node-fetch'
-
-async def getUsers(state) {
-  state.loading = true
-  try {
-    response = await fetch(`https://jsonplaceholder.typicode.com/users`)
-  } catch e {
-    console.error(e)
-    state.loading = false
-    return
-  }
-  state.users = await response.json()
-  state.loading = false
-}
-
 Index = (state) => {
   style = { padding: '1em 2em' }
   <div style>
@@ -26,8 +10,6 @@ Index = (state) => {
           <li>user.name</li>
         }
       </ul>
-    } else {
-      getUsers(state)
     }
   </div>
 }
