@@ -1,5 +1,5 @@
 
-Index = (state) => {
+UserListPage = (state) => {
   style = { padding: '1em 2em' }
   <div style>
     <h1>state.pages.index.content</h1>
@@ -11,6 +11,23 @@ Index = (state) => {
         }
       </ul>
     }
+    <button on={ click: () => state.router.go('/404') }>'404'</button>
   </div>
 }
+
+NotFoundPage = (state) => {
+  style = { padding: '1em 2em' }
+  <div style>
+    <h1>'Not found 404'</h1>
+  </div>
+}
+
+Index = (state) => {
+  if state.page == 'index' {
+    return UserListPage(state)
+  } else {
+    return NotFoundPage(state)
+  }
+}
+
 
