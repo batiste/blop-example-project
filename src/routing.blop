@@ -26,8 +26,7 @@ def createRouter(state, global) {
 
   router.add({ path: '/404', name: '404', handler: (params) => {
       state.page = ''
-    }
-  })
+  } })
   router.add({ path: '/', name: 'root', handler: indexHandler })
 
   router.init()
