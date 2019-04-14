@@ -24,8 +24,9 @@ async def indexHandler(params, state) {
 def createRouter(state, global) {
   router = new Router(null, state, global)
 
-  router.add({ path: '/404', name: '404', handler: (params) => {
-      state.page = ''
+  router.add({ path: '/404/:reason/', name: '404', handler: (params) => {
+    state.page = ''
+    state.reason = params.reason
   } })
   router.add({ path: '/', name: 'root', handler: indexHandler })
 

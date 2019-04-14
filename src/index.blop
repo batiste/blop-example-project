@@ -11,14 +11,18 @@ UserListPage = (state) => {
         }
       </ul>
     }
-    <button on={ click: () => state.router.go('/404') }>'404'</button>
+    <button class="btn btn-primary"
+      on={ click: () => state.router.go('/404/not-found/') }>
+        = 'Generate a 404'
+    </button>
   </div>
 }
 
 NotFoundPage = (state) => {
   style = { padding: '1em 2em' }
   <div style>
-    <h1>'Not found 404'</h1>
+    <h1>'404 'state.reason''</h1>
+    <p>'This page demonstrate basic routing'</p>
   </div>
 }
 
