@@ -11,13 +11,13 @@
   "license": "ISC",
   "devDependencies": {},
   "dependencies": {
-    "blop-language": "^0.9.5",
-    "express": "^4.16.4",
-    "node-fetch": "^2.3.0",
+    "blop-language": "^0.9.10",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
     "snabbdom-to-html": "^5.1.1",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.0",
-    "webpack-dev-middleware": "^3.6.2",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-middleware": "^3.7.2",
     "webpack-node-externals": "^1.7.2"
   }
 }
