@@ -5,6 +5,9 @@ state: object = {
   pages: {
     index: {
       content: 'Hello World!'
+    },
+    p404: {
+      reason: 'Not a good reason'
     }
   }
 }

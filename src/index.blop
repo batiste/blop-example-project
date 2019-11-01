@@ -1,7 +1,10 @@
+import './style.scss' as style
+import Component from 'blop'
 
-UserListPage = (state) => {
-  style = { padding: '1em 2em' }
-  <div style>
+// Function component example
+UserListPage = (attributes) => {
+  { state } = attributes
+  <div class=style.container>
     <h1>state.pages.index.content</h1>
     <p>'Example project for the Blop language with SSR, express and webpack'</p>
     if state.users {
@@ -18,19 +21,26 @@ UserListPage = (state) => {
   </div>
 }
 
-NotFoundPage = (state) => {
-  style = { padding: '1em 2em' }
-  <div style>
-    <h1>'404 'state.reason''</h1>
-    <p>'This page demonstrate basic routing'</p>
-  </div>
+// Class component example
+class NotFoundPage extends Component {
+  def render() {
+    { state } = this.attributes
+    <div class=style.container>
+      <h1>'404 'state.reason''</h1>
+      <p>'This page demonstrate basic routing'</p>
+      <button class="btn btn-primary"
+        on={ click: () => state.$.router.go('/') }>
+          = 'Go back'
+      </button>
+    </div>
+  }
 }
 
 Index = (state) => {
   if state.page == 'index' {
-    return UserListPage(state)
+    <UserListPage state />
   } else {
-    return NotFoundPage(state)
+    <NotFoundPage state=state.pages.p404 />
   }
 }
 

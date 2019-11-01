@@ -3,6 +3,13 @@ const path = require('path');
 const webpack = require('webpack');
 /* eslint-enable import/no-extraneous-dependencies */
 
+const CSSModuleLoader = {
+  loader: 'css-loader',
+  options: {
+    modules: true,
+  },
+};
+
 const clientConfig = {
   mode: 'development',
   devtool: 'eval-source-map',
@@ -27,6 +34,14 @@ const clientConfig = {
             },
           },
         ],
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', CSSModuleLoader],
+      },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', CSSModuleLoader, 'sass-loader'],
       },
     ],
   },
