@@ -25,9 +25,10 @@ def createRouter(state, global) {
   router = new Router(null, state, global)
 
   router.add({ path: '/404/:reason/', name: '404', handler: (params) => {
-    state.page = 'p404'
-    state.pages.p404.reason = params.reason
-  } })
+      state.page = 'p404'
+      state.pages.p404.reason = params.reason
+    }
+  })
   router.add({ path: '/', name: 'root', handler: indexHandler })
 
   router.init()
