@@ -15,7 +15,7 @@ async def getUsers(state) {
   state.loading = false
 }
 
-async def indexHandler(params, state) {
+async def indexHandler(_params, state) {
   state.page = 'index'
   await getUsers(state)
   console.log('indexHandler called')
