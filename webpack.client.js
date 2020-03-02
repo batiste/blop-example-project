@@ -10,12 +10,19 @@ const CSSModuleLoader = {
   },
 };
 
+const entries = ['./src/client.blop'];
+
+if (!process.env.DISTRIBUTE) {
+  entries.push('webpack-hot-middleware/client');
+}
+
+
 const clientConfig = {
   mode: 'development',
   devtool: 'eval-source-map',
   stats: 'normal',
   target: 'web',
-  entry: './src/client.blop',
+  entry: entries,
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'client.js',
@@ -50,6 +57,8 @@ const clientConfig = {
     new webpack.DefinePlugin({
       SERVER: false,
     }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
 };
 

@@ -4,6 +4,7 @@ import { createState } from './state.blop'
 import { createRouter } from './routing.blop'
 import 'webpack'
 import 'webpack-dev-middleware' as middleware
+import 'webpack-hot-middleware' as hotMiddleware
 import 'snabbdom-to-html' as toHTML
 import 'path' as nodepath
 import '../webpack.client.js' as webpackClientConf
@@ -14,17 +15,19 @@ app.use(bodyParser.json())
 
 // we only rebuild the client config
 compiler = webpack(webpackClientConf)
+app.use(hotMiddleware(compiler))
+
 instance = middleware(compiler, {
-  publicPath: '/bundle'
+  noInfo: true,
+  publicPath: '/'
 })
 
-/* If there is any client state that needs
-   to be saved on the server (session data),
-   this should go in there */
+/* a singleton in memory, should be in a DB
+   and for each user */
 savedState = null
 
 render = async (path: string) => {
-  state = createState(null)
+  state = createState(savedState)
   router = createRouter(state)
   await router.go(path)
   tree = Index(state)
@@ -33,6 +36,15 @@ render = async (path: string) => {
 }
 
 app.use(instance)
+
+app.get('/blop/favicon.ico', (_req, res) => {
+  res.sendFile(nodepath.resolve('./img/blop.png'))
+})
+
+app.post('/api/saveState', (req, res) => {
+  savedState := req.body
+  res.send('Application state properly saved on server')
+})
 
 def escapeJSON(json) {
   return JSON.stringify(json).replace(/</gm, '&lt;')
@@ -53,7 +65,9 @@ app.use(async (req, res) => {
         </div>
       </body>
       <script>window.INITIAL_STATE = `escapeJSON(savedState || state)`</script>
-      <script src="/bundle/client.js"></script>
+      <script src="/client.js"></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </html>
   `)
 })
