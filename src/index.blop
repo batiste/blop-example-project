@@ -36,9 +36,49 @@ class NotFoundPage extends Component {
   }
 }
 
+class Animation extends Component {
+
+  def constructor() {
+    super(...arguments)
+    this.x = 0
+    this.y = 0
+    this.runAnimation = false
+    this.i = 0
+  }
+
+  def render(_attributes, children, _node) {
+    <div style={ left: ''this.x'px', top: ''this.y'px', position: 'absolute' }>
+      = children
+    </div>
+  }
+
+  def animate() {
+    this.i += 0.02
+    this.x = (450) + 60 * Math.cos(this.i) - 60
+    this.y = (300) + 60 * Math.sin(this.i) - 60
+    this.runAnimation && window.requestAnimationFrame(() => this.animate())
+    this.refresh()
+  }
+
+  def onMount() {
+    this.runAnimation = true
+    console.log('mount Animation')
+    window.requestAnimationFrame(() => this.animate())
+  }
+
+  def onUnmount(_vnode) {
+    console.log('unmount Animation')
+    this.runAnimation = false
+  }
+
+}
+
 Index = (state) => {
   if state.page == 'index' {
-    <UserListPage state />
+    <div>
+      <UserListPage state />
+      <Animation>'I am an animation'</Animation>
+    </div>
   } else {
     <NotFoundPage state=state.pages.p404 />
   }

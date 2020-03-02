@@ -11,7 +11,7 @@
   "license": "ISC",
   "devDependencies": {},
   "dependencies": {
-    "blop-language": "^0.9.17",
+    "blop-language": "^0.9.19",
     "css-loader": "^3.4.2",
     "express": "^4.17.1",
     "node-fetch": "^2.6.0",
